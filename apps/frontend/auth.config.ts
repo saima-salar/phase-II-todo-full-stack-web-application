@@ -13,9 +13,7 @@ export const authConfig = betterAuth({
     enabled: true,
   },
   plugins: [
-    jwt({
-      secret: process.env.BETTER_AUTH_JWT_SECRET || process.env.BETTER_AUTH_SECRET || "d0a5c7b8cf3b4a9e8f1e2d3c4b5a6f7e8d9c0b1a2e3f4d5c6b7a8c9d0e1f2a3b",
-    })
+    jwt()
   ],
   trustedOrigins: [
     "http://localhost:3000",

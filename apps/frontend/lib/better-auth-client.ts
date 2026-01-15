@@ -84,8 +84,9 @@ class DirectAuthClient {
             }
           });
 
+          let userData = null;
           if (userResponse.ok) {
-            const userData = await userResponse.json();
+            userData = await userResponse.json();
             localStorage.setItem('user_data', JSON.stringify({
               id: userData.id.toString(),
               email: userData.email,
@@ -100,12 +101,12 @@ class DirectAuthClient {
           return {
             session: {
               user: {
-                id: userData?.id || 'unknown',
+                id: userData?.id?.toString() || 'unknown',
                 email,
-                firstName: userData?.firstName || userData?.first_name,
-                lastName: userData?.lastName || userData?.last_name,
-                createdAt: userData?.createdAt || userData?.created_at || new Date().toISOString(),
-                updatedAt: userData?.updatedAt || userData?.updated_at
+                firstName: userData?.first_name,
+                lastName: userData?.last_name,
+                createdAt: userData?.created_at || new Date().toISOString(),
+                updatedAt: userData?.updated_at
               },
               token: result.access_token
             }
